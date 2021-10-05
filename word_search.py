@@ -30,26 +30,8 @@ class Solution:
         return False
 
     def exist2(self, board: list[list[str]], word: str) -> bool:
-        directs = [(-1, 0), (0, -1), (0, 1), (1, 0)]
-        m = len(board)
-        n = len(board[0])
-        word_dict = {}
-        for i in range(m):
-            for j in range(n):
-                c = board[i][j]
-                word_dict[c] = word_dict.get(c, set())
-                if i-1 >= 0:
-                    word_dict[c].add(board[i-1][j])
-                if i+1 < m:
-                    word_dict[c].add(board[i+1][j])
-                if j-1 >= 0:
-                    word_dict[c].add(board[i][j-1])
-                if j+1 < n:
-                    word_dict[c].add(board[i][j+1])
+        pass
 
-        for i in range(len(word)-1):
-            if not (word_dict.get(word[i]) and word[i+1] in word_dict[word[i]]):
-                return False
 
         return True
 
