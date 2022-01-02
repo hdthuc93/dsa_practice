@@ -30,7 +30,7 @@ def list_to_binary_tree(lst):
             new_node = TreeNode(lst[i])
             parent.left = new_node
             q.put(new_node)
-        if lst[i+1]:
+        if i+1 < len(lst) and lst[i+1]:
             new_node = TreeNode(lst[i+1])
             parent.right = new_node
             q.put(new_node)
