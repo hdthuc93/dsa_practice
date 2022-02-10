@@ -1,34 +1,23 @@
-# https://leetcode.com/contest/weekly-contest-278/problems/find-substring-with-given-hash-value/
+# https://leetcode.com/problems/find-substring-with-given-hash-value/
 
-# TODO:
+
 class Solution:
     def subStrHash(self, s: str, power: int, modulo: int, k: int, hashValue: int) -> str:
         s_values = [ord(c) - ord('a') + 1 for c in s]
-        power_modulo = [0] * k
-        power_modulo[0] = 1
-
-        first = s_values[0] % modulo
+        i = len(s) - 1
+        res_index = -1
         val = 0
-        for i in range(1, k):
-            power_modulo[i] = (power_modulo[i-1] * power) % modulo
-            val += s_values[i] * power * power_modulo[i-1]
 
-        if (val+first) % modulo == hashValue:
-            return s[:k]
+        while i > -1:
+            val = ((val * power) + s_values[i]) % modulo
 
-        # val += power*modulo
-        for i in range(k, len(s)):
-            # val -= first
-            val = val // power
-            val += (s_values[i] * power * power_modulo[k-2])
-            if val % modulo == hashValue:
-                return s[i-k+1:i+1]
+            if len(s) - i >= k:
+                if val % modulo == hashValue:
+                    res_index = i
+                val -= s_values[i+k-1] * pow(power, k-1, modulo)
+            i -= 1
 
-            # first = s_values[i-k+1] % modulo
-            val -= s_values[i-k+1]
-            # val += power*modulo
-
-        return ''
+        return s[res_index:res_index+k]
 
 
 if __name__ == '__main__':
