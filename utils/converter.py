@@ -68,3 +68,13 @@ def list_to_linked_list(lst):
         node = node.next
 
     return head.next
+
+
+def linked_list_to_list(head):
+    lst = []
+    node = head
+    while node:
+        lst.append(node.val)
+        node = node.next
+
+    return lst

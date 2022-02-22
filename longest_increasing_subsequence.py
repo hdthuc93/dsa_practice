@@ -1,11 +1,10 @@
 # https://leetcode.com/problems/longest-increasing-subsequence/
-
-
+from typing import List
 from bisect import bisect_left
 
 
 class Solution:
-    def lengthOfLIS(self, nums: list[int]) -> int:
+    def lengthOfLIS(self, nums: List[int]) -> int:
         dp = {1: nums[0]}
         max_len = 1
         for i in range(1, len(nums)):
@@ -22,7 +21,7 @@ class Solution:
 
         return max_len
 
-    def lengthOfLIS2(self, nums: list[int]) -> int:
+    def lengthOfLIS2(self, nums: List[int]) -> int:
         stack = [nums[0]]
 
         for n in nums[1:]:
