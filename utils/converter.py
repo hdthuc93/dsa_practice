@@ -41,7 +41,8 @@ def list_to_binary_tree(lst):
 def binary_tree_to_list(head):
     new_lst = []
     q = Queue()
-    q.put(head)
+    if head:
+        q.put(head)
     while not q.empty():
         node = q.get()
         if not node:
@@ -51,7 +52,7 @@ def binary_tree_to_list(head):
             q.put(node.left)
             q.put(node.right)
 
-    while new_lst[-1] is None:
+    while len(new_lst) and new_lst[-1] is None:
         new_lst.pop()
     return new_lst
 
