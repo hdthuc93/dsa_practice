@@ -19,7 +19,6 @@ class NumberContainers:
         while indices:
             smallest_idx = heapq.heappop(indices)
             if self.idx_num[smallest_idx] == number:
-                res = smallest_idx
                 heapq.heappush(indices, smallest_idx)
                 return smallest_idx
 
