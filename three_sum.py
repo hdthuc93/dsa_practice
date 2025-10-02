@@ -5,6 +5,31 @@ from collections import Counter
 
 
 class Solution:
+    def threeSum4(self, nums: list[int]) -> list[list[int]]:
+        res = []
+        sorted_nums = sorted(nums)
+
+        for i in range(len(sorted_nums)):
+            if i > 0 and sorted_nums[i] == sorted_nums[i-1]:
+                continue
+
+            j = i + 1
+            k = len(nums) - 1
+
+            while j < k:
+                total = sorted_nums[i] + sorted_nums[j] + sorted_nums[k]
+                if total > 0:
+                    k -= 1
+                elif total < 0:
+                    j += 1
+                else:
+                    res.append([sorted_nums[i], sorted_nums[j], sorted_nums[k]])
+                    j += 1
+
+                    while sorted_nums[j-1] == sorted_nums[j] and j < k:
+                        j += 1
+        return res
+
     def threeSum2(self, nums: list[int]) -> list[list[int]]:
         c = Counter(nums)
         non_dup = sorted(list(c.keys()))
@@ -95,4 +120,4 @@ if __name__ == '__main__':
     # nums = [0,0,0]
 
     nums = [-4,-2,-2,-2,0,1,2,2,2,3,3,4,4,6,6]
-    print(Solution().threeSum3(nums))
+    print(Solution().threeSum4(nums))
